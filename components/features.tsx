@@ -1,4 +1,4 @@
-import {FEATURES} from "@/settings";
+import {FEATURES} from "@/settings/features";
 
 const Features = () => {
     return  <div className="mt-20">
@@ -13,7 +13,7 @@ const Features = () => {
                         className="bg-gray-800/50 rounded-lg p-6 backdrop-blur-sm border border-gray-700 hover:border-gray-600 transition-colors"
                     >
                         <div className="flex items-center mb-4">
-                            <feature.Icon className="h-8 w-8 text-blue-500"/>
+                            <feature.Icon className="h-8 w-8 text-purple-500"/>
                             <h3 className="text-xl font-semibold text-white mt-1 ml-4">
                                 {feature.title}
                             </h3>

@@ -6,12 +6,14 @@ import {cn} from "@/lib/utils";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Banners from "@/components/banners";
+import {DESCRIPTION, TITLE} from "@/settings/meta";
+import BackToTop from "@/components/back-to-top";
 
 const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
-    title: 'HTWK Leipzig Discord Bot',
-    description: 'Unofficial Discord bot for the HTWK Leipzig student community',
+    title: TITLE,
+    description: DESCRIPTION,
 };
 
 export default function RootLayout({
@@ -28,6 +30,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {children}
             </div>
+            <BackToTop/>
         </main>
         <Footer/>
         </body>

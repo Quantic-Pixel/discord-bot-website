@@ -1,7 +1,7 @@
 "use client"
 
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "@/components/ui/accordion"
-import {QUESTIONS_AND_ANSWERS} from "@/settings"
+import {QUESTIONS_AND_ANSWERS} from "@/settings/qna"
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";

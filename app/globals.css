@@ -10,7 +10,7 @@
 }
 
 .markdown a {
-  @apply text-blue-500
+  @apply text-purple-500
 }
 
 .markdown a:hover {
