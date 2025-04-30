@@ -1,4 +1,9 @@
-export const QUESTIONS_AND_ANSWERS = [
+export interface QuestionAndAnswer {
+    question: string;
+    answer: string;
+}
+
+export const QUESTIONS_AND_ANSWERS: QuestionAndAnswer[] = [
     // {
     //     question: "Wie erstelle ich einen Discord Account?",
     //     answer: "• Folge dazu einfach diesem Link: [Erstelle Deinen Account](https://support.discord.com/hc/de/articles/360033931551-Erste-Schritte#h_01H4RR2GE2FAK7DZ5W3765NGVT)",
