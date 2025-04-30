@@ -13,7 +13,7 @@ const Banners = () => {
                             "bg-yellow-500/10 text-yellow-200": banner.color === "yellow",
                             "bg-red-500/10 text-red-200": banner.color === "red",
                             "bg-green-500/10 text-green-200": banner.color === "green",
-                            "bg-purple-500/10 text-purple-200": banner.color === "blue",
+                            "bg-blue-500/10 text-purple-200": banner.color === "blue",
                             "bg-purple-500/10 text-purple-200": banner.color === "purple",
                             "bg-pink-500/10 text-pink-200": banner.color === "pink",
                             "bg-gray-500/10 text-gray-200": banner.color === "gray",
