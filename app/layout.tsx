@@ -23,14 +23,16 @@ export default function RootLayout({
 }) {
     return (
         <html lang="de">
-        <body className={cn(inter.className, "bg-gray-900 text-white")}>
+        <body className={cn(inter.className, "text-white bg-gradient-radial from-gray-800 via-gray-900 to-gray-950")}>
         <Banners/>
         <Header/>
-        <main className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                {children}
+        <main className="min-h-screen relative overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    {children}
+                </div>
+                <BackToTop/>
             </div>
-            <BackToTop/>
         </main>
         <Footer/>
         </body>
