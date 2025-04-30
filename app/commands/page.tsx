@@ -2,8 +2,9 @@
 
 import {Command, COMMANDS} from "@/settings/commands";
 import {useMemo, useState} from "react";
-import {Check, Copy} from "lucide-react";
+import {Check, Copy, Terminal} from "lucide-react";
 import {cx} from "class-variance-authority";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 
 // Define a type for the grouped structure
 type CommandGroups = {
@@ -125,19 +126,23 @@ export default function CommandsPage() {
 
     return (
         <main className="min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <div
-                        className="flex justify-center"
+                        className="flex justify-center flex-col"
                     >
-                        <h1 className="text-4xl font-bold text-white mb-4">Bot Commands</h1>
-                        <span
-                            className="inline-block bg-purple-500/20 h-fit mt-1 text-purple-300 font-semibold px-2 py-1 rounded-md ml-2"
+                        <div className="flex justify-center mb-8">
+                            <Terminal className="h-20 w-20 text-purple-500"/>
+                        </div>
+                        <div
+                            className={`flex justify-center`}
                         >
-                            {
-                                COMMANDS.length
-                            }
-                        </span>
+                            <h1 className="text-4xl font-bold text-white mb-4">Bot Commands</h1>
+                            <span
+                                className="inline-block bg-purple-500/20 h-fit mt-1 text-purple-300 font-semibold px-2 py-1 rounded-md ml-2">
+                                {COMMANDS.length}
+                            </span>
+                        </div>
                     </div>
                     <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                         This is a list of all available commands for the bot. You can search for commands, filter by
@@ -417,36 +422,43 @@ const CommandsList = ({
                                         )}
                                     </div>
 
-                                    {/* Parameters List */}
-                                    {cmd.parameters && cmd.parameters?.length > 0 && (
-                                        <>
-                                            <p className="text-gray-500 text-sm mt-4 mb-2">
-                                                Parameter:
-                                            </p>
-                                            <div className="space-y-2">
-                                                {cmd.parameters?.map((param, index) => (
-                                                    <div key={index} className="text-sm">
-                                                        <span className="font-medium text-purple-400">
-                                                            {param.name}
-                                                        </span>
-                                                        <span
-                                                            className={`ml-2 text-xs ${
-                                                                param.required
-                                                                    ? "text-red-400 font-semibold"
-                                                                    : "text-gray-500"
-                                                            }`}
-                                                        >
-                                                            {param.required ? "(required)" : "(optional)"}
-                                                        </span>
-                                                        <span
-                                                            className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
-                                                            {param.description}
-                                                        </span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </>
-                                    )}
+                                   {/* Parameters List */}
+                                     {cmd.parameters && cmd.parameters?.length > 0 && (
+                                         <Accordion type="single" collapsible className="mt-4">
+                                             <AccordionItem
+                                                 value="parameters"
+                                                 className="border-none"
+                                             >
+                                                 <AccordionTrigger className="py-2 text-gray-500 text-sm hover:no-underline">
+                                                     Parameters ({cmd.parameters.length})
+                                                 </AccordionTrigger>
+                                                 <AccordionContent>
+                                                     <div className="space-y-2 pt-2">
+                                                         {cmd.parameters?.map((param, index) => (
+                                                             <div key={index} className="text-sm">
+                                                                 <span className="font-medium text-purple-400">
+                                                                     {param.name}
+                                                                 </span>
+                                                                 <span
+                                                                     className={`ml-2 text-xs ${
+                                                                         param.required
+                                                                             ? "text-red-400 font-semibold"
+                                                                             : "text-gray-500"
+                                                                     }`}
+                                                                 >
+                                                                     {param.required ? "(required)" : "(optional)"}
+                                                                 </span>
+                                                                 <span
+                                                                     className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
+                                                                     {param.description}
+                                                                 </span>
+                                                             </div>
+                                                         ))}
+                                                     </div>
+                                                 </AccordionContent>
+                                             </AccordionItem>
+                                         </Accordion>
+                                     )}
                                 </div>
                             ))}
                         </div>
