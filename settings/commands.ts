@@ -2,12 +2,22 @@ export interface Command {
     name: string;
     description: string;
     categories: string[];
-    parameters?: {
-        name: string;
-        description: string;
-        required: boolean;
-        example?: string;
-    }[]
+    parameters?: (CommandParameter | CommandParameterOptional)[];
+}
+
+interface CommandParameter {
+    name: string;
+    description: string;
+    required: true;
+    example: string;
+}
+
+interface CommandParameterOptional {
+    name: string;
+    description: string;
+    required: false;
+    example: string;
+    default: string;
 }
 
 export const COMMANDS: Command[] = [
@@ -108,6 +118,7 @@ export const COMMANDS: Command[] = [
                 name: "limit",
                 description: "The limit of users to show in the leaderboard.",
                 required: false,
+                default: "10",
                 example: "10"
             }
         ]
@@ -281,6 +292,7 @@ export const COMMANDS: Command[] = [
                 name: "keep",
                 description: "Whether to keep the current role after promotion.",
                 required: false,
+                default: "false",
                 example: "true"
             }
         ]

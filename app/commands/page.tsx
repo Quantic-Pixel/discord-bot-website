@@ -280,10 +280,10 @@ export default function CommandsPage() {
                             <span
                                 className="inline-block bg-purple-500/20 text-purple-300 text-sm px-2 py-1 rounded-md">
                                 {
-                                        Object.keys(groupedAndFilteredCommands.prefixGroups)
-                                            .map(groupName => groupedAndFilteredCommands.prefixGroups[groupName])
-                                            .flat()
-                                            .map(cmd => cmd.name).length
+                                    Object.keys(groupedAndFilteredCommands.prefixGroups)
+                                        .map(groupName => groupedAndFilteredCommands.prefixGroups[groupName])
+                                        .flat()
+                                        .map(cmd => cmd.name).length
                                 }
                             </span>
                         </h2>
@@ -455,9 +455,9 @@ const CommandsList = ({
                                                     <div className="space-y-2 pt-2">
                                                         {cmd.parameters?.map((param, index) => (
                                                             <div key={index} className="text-sm">
-                                                                 <span className="font-medium text-purple-400">
-                                                                     {param.name}
-                                                                 </span>
+                                                                       <span className="font-medium text-purple-400">
+                                                                           {param.name}
+                                                                       </span>
                                                                 <span
                                                                     className={`ml-2 text-xs ${
                                                                         param.required
@@ -465,12 +465,12 @@ const CommandsList = ({
                                                                             : "text-gray-500"
                                                                     }`}
                                                                 >
-                                                                     {param.required ? "(required)" : "(optional)"}
-                                                                 </span>
+                                                                        {param.required ? "(required)" : `(optional${param.default ? `, default: ${param.default}` : ""})`}
+                                                                      </span>
                                                                 <span
                                                                     className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
-                                                                     {param.description}
-                                                                 </span>
+                                                                           {param.description}
+                                                                       </span>
                                                             </div>
                                                         ))}
                                                     </div>
