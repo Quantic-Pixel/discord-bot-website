@@ -1,34 +1,35 @@
-import {BellDot, BookOpenText, Bot, LibraryBig, Users, Zap} from "lucide-react";
+import {Bot, CircleDollarSign, LucideIcon, Milestone, SquarePen, Zap} from "lucide-react";
 
-export const FEATURES = [
+export interface Feature {
+    title: string;
+    description: string;
+    Icon: LucideIcon;
+}
+
+export const FEATURES: Feature[] = [
     {
-        title: "Allgemeine Information",
-        description: "Falls ihr schon Studenten der HTWK seid oder auch nicht, ist völlig egal, hier könnt ihr euch austauschen, informieren und gemeinsam Spaß haben!",
-        Icon: BookOpenText,
+        title: "Everything in one place",
+        description: "No need to add multiple bots to your server. We have everything you need.",
+        Icon: Bot,
     },
     {
-        title: "Community Engagement",
-        description: "Nimm an spannenden Diskussionen teil, stelle Fragen und vernetze dich mit anderen Studenten.",
-        Icon: Users,
+        title: "Easy to use",
+        description: "Our bot is easy to use and has a simple setup process and a web dashboard.",
+        Icon: Milestone,
     },
     {
-        title: "Benachrichtigungen",
-        description: "Du kannst über folgende Themen informieren: Offizielle News, StuRa News, FSR News, HTWK-Bot News, Umfragen und Giveaways.",
-        Icon: BellDot,
-    },
-    {
-        title: "Studiengänge",
-        description: "Auf dem Server gibt es für jeden Studiengang (Bachelor und Master) einen eigenen Kanal zum informieren und austauschen.",
-        Icon: LibraryBig,
-    },
-    {
-        title: "Question and Answer",
-        description: "Erhalte schnelle Antworten auf häufig gestellte Fragen zur Universität, zu Kursen und Campuseinrichtungen.",
+        title: "Fast and responsive",
+        description: "Our bot is fast and responsive, with low latency and high uptime.",
         Icon: Zap,
     },
     {
-        title: "HTWK Leipzig Bot",
-        description: "Der HTWK Leipzig Discord Server verfügt über ein eigenes Bot-System. ",
-        Icon: Bot,
+        title: "Customizable",
+        description: "You can customize the bot to fit your server's needs.",
+        Icon: SquarePen,
+    },
+    {
+        title: "Generous free tier",
+        description: "We have a generous free tier, so you can use the bot without paying anything.",
+        Icon: CircleDollarSign,
     }
 ]

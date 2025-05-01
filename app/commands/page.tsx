@@ -250,6 +250,15 @@ export default function CommandsPage() {
                                 className="inline-block bg-purple-500/20 text-purple-300 text-sm px-2 py-1 rounded-md">
                                 /
                             </span>
+                            <span
+                                className="inline-block bg-purple-500/20 text-purple-300 text-sm px-2 py-1 rounded-md">
+                                {
+                                    Object.keys(groupedAndFilteredCommands.slashGroups)
+                                        .map(groupName => groupedAndFilteredCommands.slashGroups[groupName])
+                                        .flat()
+                                        .map(cmd => cmd.name).length
+                                }
+                            </span>
                         </h2>
                         <CommandsList
                             groups={groupedAndFilteredCommands.slashGroups}
@@ -267,6 +276,15 @@ export default function CommandsPage() {
                             <span
                                 className="inline-block bg-purple-500/20 text-purple-300 text-sm px-2 py-1 rounded-md">
                                 !
+                            </span>
+                            <span
+                                className="inline-block bg-purple-500/20 text-purple-300 text-sm px-2 py-1 rounded-md">
+                                {
+                                        Object.keys(groupedAndFilteredCommands.prefixGroups)
+                                            .map(groupName => groupedAndFilteredCommands.prefixGroups[groupName])
+                                            .flat()
+                                            .map(cmd => cmd.name).length
+                                }
                             </span>
                         </h2>
                         <CommandsList
@@ -422,43 +440,44 @@ const CommandsList = ({
                                         )}
                                     </div>
 
-                                   {/* Parameters List */}
-                                     {cmd.parameters && cmd.parameters?.length > 0 && (
-                                         <Accordion type="single" collapsible className="mt-4">
-                                             <AccordionItem
-                                                 value="parameters"
-                                                 className="border-none"
-                                             >
-                                                 <AccordionTrigger className="py-2 text-gray-500 text-sm hover:no-underline">
-                                                     Parameters ({cmd.parameters.length})
-                                                 </AccordionTrigger>
-                                                 <AccordionContent>
-                                                     <div className="space-y-2 pt-2">
-                                                         {cmd.parameters?.map((param, index) => (
-                                                             <div key={index} className="text-sm">
+                                    {/* Parameters List */}
+                                    {cmd.parameters && cmd.parameters?.length > 0 && (
+                                        <Accordion type="single" collapsible className="mt-4">
+                                            <AccordionItem
+                                                value="parameters"
+                                                className="border-none"
+                                            >
+                                                <AccordionTrigger
+                                                    className="py-2 text-gray-500 text-sm hover:no-underline">
+                                                    Parameters ({cmd.parameters.length})
+                                                </AccordionTrigger>
+                                                <AccordionContent>
+                                                    <div className="space-y-2 pt-2">
+                                                        {cmd.parameters?.map((param, index) => (
+                                                            <div key={index} className="text-sm">
                                                                  <span className="font-medium text-purple-400">
                                                                      {param.name}
                                                                  </span>
-                                                                 <span
-                                                                     className={`ml-2 text-xs ${
-                                                                         param.required
-                                                                             ? "text-red-400 font-semibold"
-                                                                             : "text-gray-500"
-                                                                     }`}
-                                                                 >
+                                                                <span
+                                                                    className={`ml-2 text-xs ${
+                                                                        param.required
+                                                                            ? "text-red-400 font-semibold"
+                                                                            : "text-gray-500"
+                                                                    }`}
+                                                                >
                                                                      {param.required ? "(required)" : "(optional)"}
                                                                  </span>
-                                                                 <span
-                                                                     className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
+                                                                <span
+                                                                    className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
                                                                      {param.description}
                                                                  </span>
-                                                             </div>
-                                                         ))}
-                                                     </div>
-                                                 </AccordionContent>
-                                             </AccordionItem>
-                                         </Accordion>
-                                     )}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
+                                    )}
                                 </div>
                             ))}
                         </div>

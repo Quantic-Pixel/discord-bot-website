@@ -10,151 +10,6 @@ export interface Command {
     }[]
 }
 
-// import discord
-//
-//
-// async def quantic_help_command(ctx):
-// embed = discord.Embed(
-//     title="📋 Quantic Bot Help",
-//     description="Here are the commands you can use with Quantic Bot",
-//     color=discord.Color.purple()
-// )
-//
-// counting_help = """
-//     `/counting link #channel` - Set up a channel for counting
-//                                                          `/counting set #channel <number>` - Set the current count
-//     `/counting mode #channel <True/False>` - Enable/Disable reset on wrong numbers
-//     `/counting settings #channel` - Show the settings of the current channel
-//     `/counting unlink #channel` - Unlink the channel from counting
-//     `/counting leaderboard #channel <?limit>` - Show the leaderboard of the current channel
-//     `/counting cleanup #channel <limit>` - Checks the last `limit` messages and deletes the ones that are not numbers
-// """
-//
-// embed.add_field(
-//     name="🔢 Counting System",
-//     value=counting_help,
-//     inline=False
-// )
-//
-// advertise_help = """
-//     `/advertise link #channel <alias>` - Set up current channel for advertisement
-//                                                                         `/advertise unlink <alias>` - Unlink channel from advertisement
-//     `/advertise settings <alias>` - Set advertisement message
-//     `/advertise list` - Show current server advertisement settings
-//     `/advertise now <alias>` - Send advertisement now
-//     `/advertise get <alias>` - Show advertisement message for alias
-//     """
-// embed.add_field(
-//     name="📢 Advertisement System",
-//     value=advertise_help,
-//     inline=False
-// )
-//
-// quantic_error = """
-//     `/error set #channel` - Set error channel
-//     `/error remove` - Remove error channel
-//     `/error list` - List error channel
-// """
-//
-// embed.add_field(
-//     name="🚨 Quantic Error System",
-//     value=quantic_error,
-//     inline=False
-// )
-//
-// quantic_report_system = """
-//     `/report user @user <reason>` - Make a ban report
-//     `/report set #channel` - Set ban report channel
-//     `/report remove` - Remove ban report channel
-//     `/report list` - List ban report channels
-// """
-//
-// embed.add_field(
-//     name="🔨 Quantic Report System",
-//     value=quantic_report_system,
-//     inline=False
-// )
-//
-// quantic_promotion_system = """
-//     `/promote set #channel` - Set promotion channel
-//     `/promote remove` - Remove promotion channel
-//     `/promote list` - List pending promotions
-//     `/promote <@user> <current_role> <new_role> <duration>` - Create a new promotion
-//     `/promote now <@user>` - Send promotion poll now
-//     `/promote approve <@user>` - Approve promotion
-//     `/promote deny <@user>` - Deny promotion
-//     `/promote cancel <@user>` - Cancel promotion
-//     `/promote settings` - Show promotion settings
-//     `/promote list` - List pending promotions
-//     `/promote remove <@user>` - Remove pending promotion
-// """
-//
-// embed.add_field(
-//     name="🎖️ Quantic Promotion System",
-//     value=quantic_promotion_system,
-//     inline=False
-// )
-//
-// quantic_giveaway_system = """
-//     `/giveaway set <#channel>` - Set giveaway channel
-//     `/giveaway remove` - Remove giveaway channel
-//     `/giveaway list` - List giveaways
-//     `/giveaway channel` - Show giveaway channel
-//     `/giveaway settings <alias>` - Set giveaway settings
-//     `/giveaway excluded list` - List excluded roles
-//     `/giveaway excluded add <role>` - Add role to excluded roles
-//     `/giveaway excluded remove <role>` - Remove role from excluded roles
-//     `/giveaway start <alias>` - Start giveaway
-//     `/giveaway end <alias>` - End giveaway
-//     `/giveaway delete <alias>` - Delete giveaway
-//     `/giveaway create <alias>` - Create a new giveaway
-//     `/giveaway reroll <alias>` - Reroll giveaway winner(s)
-// """
-//
-// embed.add_field(
-//     name="🎉 Quantic Giveaway System",
-//     value=quantic_giveaway_system,
-//     inline=False
-// )
-//
-// quantic_joinping_system = """
-//     `/joinping add <#voice_channel> <#text_channel> <role>` - Set join ping channel
-//     `/joinping remove <#voice_channel>` - Remove join ping channel
-//     `/joinping list` - List join ping channels
-// """
-//
-// embed.add_field(
-//     name="🔔 Quantic Join Ping System",
-//     value=quantic_joinping_system,
-//     inline=False
-// )
-//
-// quantic_stats_system = """
-//     `/stats add <stat>` - Create a new stats channel
-//     `/stats remove <stat>` - Delete a stats channel
-// """
-//
-// embed.add_field(
-//     name="📊 Quantic Stats System",
-//     value=quantic_stats_system,
-//     inline=False
-// )
-//
-// quantic_join_to_create = """
-//     `/join2create add <#voice_channel>` - Create a new join to create channel
-//     `/join2create remove <#voice_channel>` - Remove join to create channel
-//     `/join2create list` - List join to create channels
-// """
-// embed.add_field(
-//     name="🔄 Quantic Join to Create System",
-//     value=quantic_join_to_create,
-//     inline=False
-// )
-//
-//
-//
-// await ctx.send(embed=embed)
-
 export const COMMANDS: Command[] = [
     {
         name: "/help",
@@ -548,11 +403,6 @@ export const COMMANDS: Command[] = [
         categories: ["Admin", "Moderation"]
     },
     {
-        name: "/report list",
-        description: "List ban report channels.",
-        categories: ["Admin", "Moderation"]
-    },
-    {
         name: "/giveaway channel set",
         description: "Set giveaway channel.",
         categories: ["Admin"],
@@ -767,7 +617,7 @@ export const COMMANDS: Command[] = [
                 name: "stat",
                 description: "The stat to create.",
                 required: true,
-                example: "messages"
+                example: "Total Members"
             }
         ]
     },
@@ -780,7 +630,7 @@ export const COMMANDS: Command[] = [
                 name: "stat",
                 description: "The stat to delete.",
                 required: true,
-                example: "messages"
+                example: "Bots"
             }
         ]
     },
@@ -814,5 +664,28 @@ export const COMMANDS: Command[] = [
         name: "/join2create list",
         description: "List join to create channels.",
         categories: ["Admin", "utility"]
-    }
+    },
+    {
+        name: "/settings channel set",
+        description: "Set the default bot channel. This is the channel where the bot will send messages by default if no channel is specified for other commands.",
+        categories: ["Admin"],
+        parameters: [
+            {
+                name: "channel",
+                description: "The channel to set as default bot channel.",
+                required: true,
+                example: "#bot-channel"
+            }
+        ]
+    },
+    {
+        name: "/settings channel remove",
+        description: "Remove default bot channel.",
+        categories: ["Admin"]
+    },
+    {
+        name: "/settings channel show",
+        description: "Show default bot channel.",
+        categories: ["Admin"]
+    },
 ];

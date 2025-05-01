@@ -1,3 +1,5 @@
+import {SOCIALS} from "@/settings/socials";
+
 export interface Banner {
     title: string;
     link?: string;
@@ -8,7 +10,7 @@ export interface Banner {
 export const BANNERS: Banner[] = [
     {
         title: "🧑‍💻 The bot is currently in development. You can join our Discord server to get insights and updates.",
-        link: "https://discord.gg/quantic",
+        link: SOCIALS.discord.link,
         linkText: "Join Discord Server",
         color: "purple",
     }
