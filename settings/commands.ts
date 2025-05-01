@@ -9,6 +9,7 @@ interface CommandParameter {
     name: string;
     description: string;
     required: true;
+    type: string;
     example: string;
 }
 
@@ -17,6 +18,7 @@ interface CommandParameterOptional {
     description: string;
     required: false;
     example: string;
+    type: string;
     default: string;
 }
 
@@ -35,6 +37,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to link.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             }
         ]
@@ -48,11 +51,13 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set the count in.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             },
             {
                 name: "number",
                 description: "The number to set.",
+                type: "number",
                 required: true,
                 example: "1"
             }
@@ -67,12 +72,14 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set the mode in.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             },
             {
                 name: "mode",
                 description: "True or False to enable or disable reset on wrong numbers.",
                 required: true,
+                type: "boolean",
                 example: "True"
             }
         ]
@@ -86,6 +93,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to show the settings for.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             }
         ]
@@ -99,6 +107,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to unlink.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             }
         ]
@@ -112,12 +121,14 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to show the leaderboard for.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             },
             {
                 name: "limit",
                 description: "The limit of users to show in the leaderboard.",
                 required: false,
+                type: "number",
                 default: "10",
                 example: "10"
             }
@@ -132,12 +143,14 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to clean up.",
                 required: true,
+                type: "channel",
                 example: "#counting"
             },
             {
                 name: "limit",
                 description: "The limit of messages to check.",
                 required: true,
+                type: "number",
                 example: "100"
             }
         ]
@@ -151,12 +164,14 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to link.",
                 required: true,
+                type: "channel",
                 example: "#advertisement"
             },
             {
                 name: "alias",
                 description: "The alias for the advertisement.",
                 required: true,
+                type: "string",
                 example: "my_advertisement"
             }
         ]
@@ -170,6 +185,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the advertisement to unlink.",
                 required: true,
+                type: "string",
                 example: "my_advertisement"
             }
         ]
@@ -183,6 +199,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the advertisement to set.",
                 required: true,
+                type: "string",
                 example: "my_advertisement"
             }
         ]
@@ -201,6 +218,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the advertisement to send.",
                 required: true,
+                type: "string",
                 example: "my_advertisement"
             }
         ]
@@ -214,6 +232,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the advertisement to get.",
                 required: true,
+                type: "string",
                 example: "my_advertisement"
             }
         ]
@@ -227,6 +246,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as error channel.",
                 required: true,
+                type: "channel",
                 example: "#error"
             }
         ]
@@ -250,6 +270,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as promotion channel.",
                 required: true,
+                type: "channel",
                 example: "#promotion"
             }
         ]
@@ -268,31 +289,36 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to promote.",
                 required: true,
+                type: "user",
                 example: "@user"
             },
             {
                 name: "current_role",
                 description: "The current role of the user.",
                 required: true,
+                type: "role",
                 example: "Member"
             },
             {
                 name: "new_role",
                 description: "The new role to promote the user to.",
                 required: true,
+                type: "role",
                 example: "Moderator"
             },
             {
                 name: "duration",
                 description: "The duration of the promotion.",
                 required: true,
-                example: "1d"
+                type: "number<days>",
+                example: "1"
             },
             {
                 name: "keep",
                 description: "Whether to keep the current role after promotion.",
                 required: false,
                 default: "false",
+                type: "boolean",
                 example: "true"
             }
         ]
@@ -306,6 +332,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as promotion channel.",
                 required: true,
+                type: "channel",
                 example: "#promotion"
             }
         ]
@@ -329,6 +356,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to promote.",
                 required: true,
+                type: "user",
                 example: "@user"
             }
         ]
@@ -342,6 +370,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to approve.",
                 required: true,
+                type: "user",
                 example: "@user"
             }
         ]
@@ -355,6 +384,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to deny.",
                 required: true,
+                type: "user",
                 example: "@user"
             }
         ]
@@ -368,6 +398,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to cancel.",
                 required: true,
+                type: "user",
                 example: "@user"
             }
         ]
@@ -381,12 +412,14 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to report.",
                 required: true,
+                type: "user",
                 example: "@user"
             },
             {
                 name: "reason",
                 description: "The reason for the report.",
                 required: true,
+                type: "string",
                 example: "Spamming"
             }
         ]
@@ -400,6 +433,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as ban report channel.",
                 required: true,
+                type: "channel",
                 example: "#ban-reports"
             }
         ]
@@ -423,6 +457,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as giveaway channel.",
                 required: true,
+                type: "channel",
                 example: "#giveaways"
             }
         ]
@@ -451,6 +486,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to set.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -469,6 +505,7 @@ export const COMMANDS: Command[] = [
                 name: "role",
                 description: "The role to exclude.",
                 required: true,
+                type: "role",
                 example: "@excluded_role"
             }
         ]
@@ -482,6 +519,7 @@ export const COMMANDS: Command[] = [
                 name: "role",
                 description: "The role to include.",
                 required: true,
+                type: "role",
                 example: "@included_role"
             }
         ]
@@ -495,6 +533,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to exclude.",
                 required: true,
+                type: "user",
                 example: "@excluded_user"
             }
         ]
@@ -508,6 +547,7 @@ export const COMMANDS: Command[] = [
                 name: "user",
                 description: "The user to include.",
                 required: true,
+                type: "user",
                 example: "@included_role"
             }
         ]
@@ -521,6 +561,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to start.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -534,6 +575,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to end.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -547,6 +589,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to delete.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -560,6 +603,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to create.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -573,6 +617,7 @@ export const COMMANDS: Command[] = [
                 name: "alias",
                 description: "The alias of the giveaway to reroll.",
                 required: true,
+                type: "string",
                 example: "my_giveaway"
             }
         ]
@@ -586,18 +631,21 @@ export const COMMANDS: Command[] = [
                 name: "voice_channel",
                 description: "The voice channel to set as join ping channel.",
                 required: true,
+                type: "channel",
                 example: "#voice_channel"
             },
             {
                 name: "text_channel",
                 description: "The text channel to set as join ping channel.",
                 required: true,
+                type: "channel",
                 example: "#text_channel"
             },
             {
                 name: "role",
                 description: 'The role to ping when someone joins the voice channel. Use `@everyone` to ping everyone.',
                 required: true,
+                type: "role",
                 example: "@moderator"
             }
         ]
@@ -611,6 +659,7 @@ export const COMMANDS: Command[] = [
                 name: "voice_channel",
                 description: "The voice channel to remove from join ping.",
                 required: true,
+                type: "channel",
                 example: "#voice_channel"
             }
         ]
@@ -629,6 +678,7 @@ export const COMMANDS: Command[] = [
                 name: "stat",
                 description: "The stat to create.",
                 required: true,
+                type: "string",
                 example: "Total Members"
             }
         ]
@@ -641,6 +691,7 @@ export const COMMANDS: Command[] = [
             {
                 name: "stat",
                 description: "The stat to delete.",
+                type: "string",
                 required: true,
                 example: "Bots"
             }
@@ -649,12 +700,13 @@ export const COMMANDS: Command[] = [
     {
         name: "/join2create add",
         description: "Create a new join to create channel.",
-        categories: ["Admin", "utility"],
+        categories: ["utility"],
         parameters: [
             {
                 name: "voice_channel",
                 description: "The voice channel to set as join to create channel.",
                 required: true,
+                type: "channel",
                 example: "#voice_channel"
             }
         ]
@@ -662,12 +714,13 @@ export const COMMANDS: Command[] = [
     {
         name: "/join2create remove",
         description: "Remove join to create channel.",
-        categories: ["Admin", "utility"],
+        categories: ["utility"],
         parameters: [
             {
                 name: "voice_channel",
                 description: "The voice channel to remove from join to create.",
                 required: true,
+                type: "channel",
                 example: "#voice_channel"
             }
         ]
@@ -675,7 +728,7 @@ export const COMMANDS: Command[] = [
     {
         name: "/join2create list",
         description: "List join to create channels.",
-        categories: ["Admin", "utility"]
+        categories: ["utility"]
     },
     {
         name: "/settings channel set",
@@ -686,6 +739,7 @@ export const COMMANDS: Command[] = [
                 name: "channel",
                 description: "The channel to set as default bot channel.",
                 required: true,
+                type: "channel",
                 example: "#bot-channel"
             }
         ]
@@ -699,5 +753,26 @@ export const COMMANDS: Command[] = [
         name: "/settings channel show",
         description: "Show default bot channel.",
         categories: ["Admin"]
+    },
+    {
+        name: "/absent",
+        description: "Set your absent status. This will prevent you from being pinged in the server.",
+        categories: ["utility", "Team"],
+        parameters: [
+            {
+                name: "status",
+                description: "The status to set.",
+                required: true,
+                type: "string",
+                example: "Away"
+            },
+            {
+                name: "duration",
+                description: "The duration of the absent status.",
+                required: true,
+                type: "string<d|h|m|s>",
+                example: "1h"
+            }
+        ]
     },
 ];

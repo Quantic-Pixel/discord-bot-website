@@ -86,6 +86,7 @@ export default function CommandsPage() {
     }, [searchTerm, selectedCategories, selectedGroups]); // Add selectedGroups to dependencies
 
     // Group the filtered commands
+    // Group the filtered commands
     const groupedAndFilteredCommands = useMemo(() => {
         const slashCommands = filteredCommands.filter((cmd) =>
             cmd.name.startsWith("/")
@@ -94,11 +95,35 @@ export default function CommandsPage() {
             cmd.name.startsWith("!")
         );
 
-        return {
-            slashGroups: groupCommands(slashCommands),
-            prefixGroups: groupCommands(prefixCommands),
+        // Create temporary groups
+        const tempSlashGroups = groupCommands(slashCommands);
+        const tempPrefixGroups = groupCommands(prefixCommands);
+
+        // Function to consolidate single commands
+        const consolidateGroups = (groups: CommandGroups) => {
+            const singleCommands: Command[] = [];
+            const multiCommands: CommandGroups = {};
+
+            Object.entries(groups).forEach(([groupName, commands]) => {
+                if (commands.length === 1) {
+                    singleCommands.push(commands[0]);
+                } else {
+                    multiCommands[groupName] = commands;
+                }
+            });
+
+            if (singleCommands.length > 0) {
+                multiCommands['Other'] = singleCommands;
+            }
+
+            return multiCommands;
         };
-    }, [filteredCommands]); // Depends on filteredCommands
+
+        return {
+            slashGroups: consolidateGroups(tempSlashGroups),
+            prefixGroups: consolidateGroups(tempPrefixGroups),
+        };
+    }, [filteredCommands]);
 
 
     const toggleCategory = (category: string) => {
@@ -455,22 +480,28 @@ const CommandsList = ({
                                                     <div className="space-y-2 pt-2">
                                                         {cmd.parameters?.map((param, index) => (
                                                             <div key={index} className="text-sm">
-                                                                       <span className="font-medium text-purple-400">
-                                                                           {param.name}
-                                                                       </span>
                                                                 <span
-                                                                    className={`ml-2 text-xs ${
-                                                                        param.required
-                                                                            ? "text-red-400 font-semibold"
-                                                                            : "text-gray-500"
-                                                                    }`}
+                                                                    className="font-medium text-purple-400">
+                                                                    {param.name}
+                                                                </span>
+                                                                {
+                                                                    param.type && (
+                                                                        <span
+                                                                            className="text-xs text-gray-400 ml-1">({param.type})</span>
+                                                                    )
+                                                                }
+                                                                <span className={cn("ml-1 text-xs", {
+                                                                        "text-red-400 font-semibold": param.required,
+                                                                        "text-gray-500": !param.required,
+                                                                    }
+                                                                )}
                                                                 >
-                                                                        {param.required ? "(required)" : `(optional${param.default ? `, default: ${param.default}` : ""})`}
-                                                                      </span>
+                                                                    {param.required ? "(required)" : `(optional${param.default ? `, default: ${param.default}` : ""})`}
+                                                                </span>
                                                                 <span
                                                                     className="block text-gray-300 text-xs pl-2 border-l-2 border-gray-700 ml-1 mt-1">
-                                                                           {param.description}
-                                                                       </span>
+                                                                    {param.description}
+                                                                </span>
                                                             </div>
                                                         ))}
                                                     </div>
