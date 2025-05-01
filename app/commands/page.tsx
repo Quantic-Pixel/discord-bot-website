@@ -3,7 +3,7 @@
 import {Command, COMMANDS} from "@/settings/commands";
 import {useMemo, useState} from "react";
 import {Check, Copy, Terminal} from "lucide-react";
-import {cx} from "class-variance-authority";
+import {cn} from "@/lib/utils";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 
 // Define a type for the grouped structure
@@ -390,14 +390,14 @@ const CommandsList = ({
                                                     {cmd.parameters.map((param, index) => (
                                                         <span
                                                             key={index}
-                                                            className={cx("mr-2 bg-purple-500/20 pl-2 rounded-md flex items-center", {
+                                                            className={cn("mr-2 bg-purple-500/20 pl-2 rounded-md flex items-center", {
                                                                 "bg-purple-500/20": param.required,
                                                                 "bg-gray-500/20": !param.required,
                                                             })}
                                                         >
                                                             {" "}
                                                             {/* Wrapper for param name and example */}
-                                                            <span className={cx("font-medium ", {
+                                                            <span className={cn("font-medium ", {
                                                                 "text-purple-300": param.required,
                                                                 "text-gray-300": !param.required,
                                                             })}>
@@ -406,7 +406,7 @@ const CommandsList = ({
                                                             {/* Parameter name */}
                                                             {param.example && (
                                                                 <span
-                                                                    className={cx("inline-block text-xs px-1.5 py-0.5 rounded-md ml-1", {
+                                                                    className={cn("inline-block text-xs px-1.5 py-0.5 rounded-md ml-1", {
                                                                         "bg-purple-500/20 text-purple-300": param.required,
                                                                         "bg-gray-500/20 text-gray-300": !param.required,
                                                                     })}>
