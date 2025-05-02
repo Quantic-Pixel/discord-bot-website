@@ -760,19 +760,52 @@ export const COMMANDS: Command[] = [
         categories: ["utility", "Team"],
         parameters: [
             {
-                name: "status",
-                description: "The status to set.",
-                required: true,
-                type: "string",
-                example: "Away"
-            },
-            {
                 name: "duration",
                 description: "The duration of the absent status.",
                 required: true,
-                type: "string<d|h|m|s>",
-                example: "1h"
+                type: "number",
+                example: "3"
+            },
+            {
+                name: "unit",
+                description: "The unit of the duration. Can be `days` or `hours`.",
+                required: true,
+                type: "string",
+                example: "days"
+            },
+            {
+                name: "reason",
+                description: "The reason for the absent status.",
+                required: false,
+                type: "string",
+                example: "Going on vacation",
+                default: "No reason provided"
             }
         ]
     },
+    {
+        name: "/absent remove",
+        description: "Remove your absent status.",
+        categories: ["utility", "Team"]
+    },
+    {
+        name: "/absent list",
+        description: "List all absent users.",
+        categories: ["utility", "Team"]
+    },
+    {
+        name: "/absent show",
+        description: "Show your or another user's absent status.",
+        categories: ["utility", "Team"],
+        parameters: [
+            {
+                name: "user",
+                description: "The user to show absent status for.",
+                required: false,
+                type: "user",
+                example: "@user",
+                default: '@me'
+            }
+        ]
+    }
 ];
