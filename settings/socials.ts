@@ -4,7 +4,7 @@
 export const SOCIALS = {
     discord: {
         name: "Discord",
-        link: "https://discord.gg/eenP4pu7k7",
+        link: "https://discord.gg/24Zf3y2sRT",
     },
     website: {
         name: "Website",

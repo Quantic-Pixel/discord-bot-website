@@ -1,28 +1,36 @@
-import {Bot, ServerIcon, UsersIcon} from "lucide-react";
+import {Bot, LucideIcon, ServerIcon, UsersIcon} from "lucide-react";
 
-
-async function getServerMembers(server_id: number): Promise<number> {
-
-    return 0
+export interface Stat {
+    title: string;
+    value: number;
+    Icon: LucideIcon;
+    suffix?: string;
+    loader?: () => Promise<number>;
 }
 
-// Math.floor(getServerMembers(1254460920084562090).then() / 10) * 10 + "+"
-
-export const STATS = [
+export const STATS: Stat[] = [
     {
-        title: "Active Users",
-        value: "200+",
-        icon: UsersIcon,
+        title: "Members",
+        value: 99,
+        Icon: UsersIcon,
+        suffix: "+",
+        loader: async () => {
+            const apiResult = await fetch(`https://discord.com/api/v10/invites/24Zf3y2sRT?with_counts=true&with_expiration=true`, {
+                next: {revalidate: 3600}
+            })
+            const data = await apiResult.json()
+            const members = data.approximate_member_count || 1;
+            return Math.floor(members / 10) * 10;
+        }
     },
     {
         title: "Installed Servers",
-        value: "1",
-        icon: Bot,
+        value: 1,
+        Icon: Bot,
     },
     {
         title: "Developers",
-        value: "5",
-        icon: ServerIcon,
+        value: 5,
+        Icon: ServerIcon,
     },
 ];
-
